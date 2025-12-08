@@ -18,7 +18,6 @@ Our goal is to host a static website using:
 
 ![alt text](images/diagram.png)
 
-
 ## Key Resources 
 
 - ACM Certificate (us-east-1) – required for CloudFront SSL/TLS
