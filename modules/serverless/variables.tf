@@ -11,12 +11,17 @@ variable "lambda_filename" {
   default = "visitor_counter.zip"
 }
 
-variable "aws_region" {
+variable "lambda_function_name" {
   type = string
+  default = "visitor-counter-lambda"
+}
+
+variable "aws_region" {
+  type    = string
   default = "us-east-1"
 }
 
 variable "lambda_s3_key" {
-  type = string
+  type    = string
   default = ""
 }

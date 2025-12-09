@@ -1,4 +1,6 @@
-# ACM Certificate in us-east-1 for CloudFront
+# --------------------------------------------------------------
+# ACM Certificate (for CloudFront – ACM in us-east-1 is required)
+# --------------------------------------------------------------
 resource "aws_acm_certificate" "this" {
   domain_name               = var.domain_name
   subject_alternative_names = var.subject_alternative_names
@@ -26,11 +28,13 @@ resource "aws_route53_record" "validation" {
 }
 
 resource "aws_acm_certificate_validation" "this" {
-  certificate_arn          = aws_acm_certificate.this.arn
-  validation_record_fqdns  = [for record in aws_route53_record.validation : record.fqdn]
+  certificate_arn         = aws_acm_certificate.this.arn
+  validation_record_fqdns = [for record in aws_route53_record.validation : record.fqdn]
 }
 
-# S3 Bucket
+# --------------------------------------------------------------
+# S3 Bucket for Static Website
+# --------------------------------------------------------------
 resource "aws_s3_bucket" "static" {
   bucket        = "${var.prefix}-static-web-${var.environment}"
   force_destroy = true
@@ -44,14 +48,48 @@ resource "aws_s3_bucket_public_access_block" "static_block" {
   restrict_public_buckets = true
 }
 
-resource "aws_cloudfront_origin_access_control" "oac" {
-  name                             = "${var.prefix}-oac"
-  description                      = "Origin Access Control for ${aws_s3_bucket.static.bucket}"
-  origin_access_control_origin_type = "s3"
-  signing_behavior                 = "always"
-  signing_protocol                 = "sigv4"
+# --------------------------------------------------------------
+# S3 Bucket Policy (Required for CloudFront OAC)
+# --------------------------------------------------------------
+resource "aws_s3_bucket_policy" "static_policy" {
+  bucket = aws_s3_bucket.static.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid    = "AllowCloudFrontRead"
+        Effect = "Allow"
+        Principal = {
+          Service = "cloudfront.amazonaws.com"
+        }
+        Action   = "s3:GetObject"
+        Resource = "${aws_s3_bucket.static.arn}/*"
+
+        Condition = {
+          StringEquals = {
+            "AWS:SourceArn" = aws_cloudfront_distribution.distribution.arn
+          }
+        }
+      }
+    ]
+  })
 }
 
+# --------------------------------------------------------------
+# CloudFront OAC
+# --------------------------------------------------------------
+resource "aws_cloudfront_origin_access_control" "oac" {
+  name                              = "${var.prefix}-oac"
+  description                       = "Origin Access Control for ${aws_s3_bucket.static.bucket}"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
+# --------------------------------------------------------------
+# CloudFront Distribution
+# --------------------------------------------------------------
 resource "aws_cloudfront_distribution" "distribution" {
   origin {
     domain_name              = aws_s3_bucket.static.bucket_regional_domain_name
@@ -64,12 +102,11 @@ resource "aws_cloudfront_distribution" "distribution" {
   default_root_object = "index.html"
 
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${var.prefix}-oac"
-
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+    target_origin_id       = "${var.prefix}-oac"
     viewer_protocol_policy = "redirect-to-https"
-    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    cache_policy_id        = "658327ea-f89d-4fab-a63d-7e88639e58f6"
   }
 
   viewer_certificate {
@@ -80,7 +117,6 @@ resource "aws_cloudfront_distribution" "distribution" {
 
   aliases = var.dns_aliases
 
-  # single restrictions block
   restrictions {
     geo_restriction {
       restriction_type = "none"
@@ -88,6 +124,9 @@ resource "aws_cloudfront_distribution" "distribution" {
   }
 }
 
+# --------------------------------------------------------------
+# Route53 Alias (Custom Domain → CloudFront)
+# --------------------------------------------------------------
 resource "aws_route53_record" "dns_alias" {
   zone_id = data.aws_route53_zone.selected.zone_id
   name    = var.dns_aliases[0]
