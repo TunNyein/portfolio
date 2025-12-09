@@ -1,16 +1,18 @@
 # 🌐 Portfolio Serverless Website
 
-## Overview
-This project demonstrates a fully serverless, scalable, and cost-efficient portfolio website on AWS.
-Infrastructure is provisioned using Terraform Cloud, while GitHub Actions automatically triggers deployments on every push.
+[Visit the live site](https://www.tunlab.xyz)
 
-The backend provides a serverless visitor counter API, and the frontend is delivered globally through CloudFront and stored in S3.
+## 📌 Overview
+This project[My Portfolio](https://www.tunlab.xyz)  demonstrates a fully serverless, scalable, and high-performance portfolio website hosted entirely on AWS.
+
+Infrastructure is deployed using **Terraform Cloud**, and **GitHub Actions** automatically triggers deployment pipelines on every push.
+The backend includes a serverless visitor counter API, and the frontend is globally delivered via CloudFront from an S3 bucket.
 
 ## 🚀 Features
 
 ### **Frontend**
 - Static portfolio website hosted on **S3**
-- Global caching and delivery with **CloudFront CDN**
+- Global CDN delivery and caching via **CloudFront**
 - Custom domain managed with **Route 53**
 - HTTPS enabled using **AWS ACM**
 
