@@ -4,7 +4,7 @@
 variable "prefix" {
   description = "Prefix used for naming all AWS resources."
   type        = string
-  default     = "hellocloud"
+  default     = "portfolio"
 }
 
 variable "environment" {
