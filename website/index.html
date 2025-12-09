@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tun Nyein Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content-wrapper"> 
+        <div class="logo">Tun Nyein</div>
+        <nav>
+          <ul>
+            <li><a href="#about" class="nav-link">About</a></li> 
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li> 
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#certs" class="nav-link">Certifications</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+    </div>
+  </header>
+
+  <section id="about" class="section hero-section"> 
+    
+    <div class="hero-main-content-wrapper"> 
+        
+        <div class="profile-area">
+            <img src="images/tn-img.jpeg" alt="Profile" class="profile-img" /> 
+            <p class="role-text">Aspiring Cloud & DevOps Engineer</p> 
+            <p class="visitor-box">
+                <i class="fas fa-eye"></i>
+                Total Visitor: 
+                <span id="visitor-counter">Loading counter...</span>
+            </p>
+    </div>
+
+        <div class="hero-content-wrapper">
+          <div class="home-content">
+            <h1>Hello, I'm Tun Nyein</h1>
+          </div>
+
+          <h2 class="section-title">About Me</h2>
+          <p class="about-text">
+            Hi, I’m Tun Nyein — Cloud and DevOps Engineer transitioning from 10+ years of IT system and network administration into cloud platforms, automation, and containerized environments. I specialize in AWS, Terraform, Kubernetes, CI/CD, and automation. I’m passionate about simplifying infrastructure with Infrastructure as Code, containerized workloads, and DevOps best practices.
+          </p>
+
+          <div class="social-links-box">
+              <a href="https://github.com/TunNyein" target="_blank" class="social-link"><i class="fab fa-github"></i> GitHub</a>
+              <a href="https://gitlab.com/tunnyein" target="_blank" class="social-link"><i class="fab fa-gitlab"></i> GitLab</a>
+              <a href="https://blog.tunlab.xyz/" target="_blank" class="social-link"><i class="fas fa-blog"></i> Blog</a>
+          </div>
+        </div>
+        
+    </div> 
+    
+  </section>
+
+  <section id="experience" class="section">
+    <h2 class="section-title">Professional Experience</h2>
+    
+    <div class="experience-card">
+        <h4> IT Officer - ADRA Myanmar<span class="tenure"> (Aug 2024–Present)</span></h4>
+        <p class="company">International Non-Governmental Organization (INGO)</p> <ul>
+            <li>Designed and implemented secure cloud collaboration platforms using Microsoft 365 and SharePoint.</li>
+            <li>Improved infrastructure reliability by automating routine IT workflows and strengthening backup practices.</li>
+            <li>Produced IT documentation, SOPs, and training materials to improve staff adoption and system usage.</li>
+            <li>Enhanced data security and availability through Nextcloud backup management and endpoint protection.</li>
+            <li>Provided technical support and delivered IT training that improved digital literacy across the organization.</li>
+        </ul>
+    </div>
+    
+    <div class="experience-card">
+        <h4>ICT Specialist - International Committee of the Red Cross <span class="tenure"> ( June 2019–2024)</span></h4>
+        <p class="company">International Non-Governmental Organization (INGO)</p>
+        <ul>
+            <li>Managed hybrid on-premise and cloud infrastructure across multiple field sites, ensuring high availability.</li>
+            <li>Integrated VPN solutions and cloud connectivity with AWS to support secure remote access.</li>
+            <li>Collaborated with global ICT architecture teams to align local infrastructure with international standards.</li>
+            <li>Managed network, server, and power system operations, improving performance and reducing outages</li>
+            <li>Ensured cybersecurity compliance and supported technical response during field operations.</li>
+        </ul>
+    </div>
+
+    <div class="experience-card">
+        <h4>IT Officer - International Rescue Committee  <span class="tenure"> ( May 2018–2019)</span></h4>
+        <p class="company">International Non-Governmental Organization (INGO)</p>
+        <ul>
+            <li>Delivered IT, network, and system support for multiple field locations with high service availability.</li>
+            <li>Implemented endpoint protection, backup solutions, and monitoring for critical systems..</li>
+            <li>Supported global IT teams to standardize infrastructure, improve security, and streamline operations.</li>
+
+        </ul>
+    </div>
+
+    <div class="experience-card">
+        <h4>Network Engineer - Golden Key Family Farmer Group  <span class="tenure"> (May 2012–2018 )</span></h4>
+        <p class="company">Argiculture Company Limited (INGO)</p>
+        <ul>
+            <li>Designed and maintained enterprise network infrastructure supporting SAP business operations.</li>
+            <li>Managed Active Directory, DNS, DHCP, VPN, firewall, and server systems to ensure secure operations.</li>
+            <li>Monitored and optimized WAN/LAN performance across headquarters and branch offices.</li>
+            <li>Installed and maintained servers, NAS, PABX, CCTV, and other ICT equipment.</li>
+            <li>Created system architecture documentation and conducted user training on safe IT practices.</li>
+
+        </ul>
+    </div>
+
+  </section>
+  
+  <section id="skills" class="section">
+    <h2 class="section-title">Technical Skills</h2>
+    <ul class="skills-list">
+      <li>Cloud Platforms : (AWS and Azure)</li>
+      <li>Containerization & Orchestration: (Docker,Kubernetes & Helm)</li>
+      <li>IaC: (Terraform and Cloudformaion)</li>
+      <li>CI/CD : (GitHub & Gitlab)</li>
+      <li>Linux & Windows Administration</li>
+      <li>Network Administration</li>
+      <li>Monitoring & Observability: (AWS CloudWatch, Datadog, Grafana, Prometheus)</li> 
+      <li>Microsoft Office 365 Administration</li>
+      
+    </ul>
+  </section>
+
+  <section id="projects" class="section">
+    <h2 class="section-title">Projects</h2>
+    
+    <div class="projects-container">
+        <article class="project-card">
+            <h4>BookInfo Microservices on ECS Fargate with Cloud Map</h4>
+            <p>Designed and deployed the Istio BookInfo application on AWS ECS Fargate, leveraging Cloud Map for DNS-based service discovery and an Application Load Balancer (ALB) for frontend access.</p>
+            <a href="https://github.com/TunNyein/ecs-bookinfo-microservices" target="_blank" class="project-link">View on Github →</a>
+        </article>
+
+        <article class="project-card">
+            <h4>AWS-EKS Blue/Green Deployment Strategy with Weighted Traffic</h4>
+            <p>Implemented a multi-cluster Blue/Green deployment strategy on AWS EKS, using ExternalDNS and Route 53 Weighted Routing for zero-downtime traffic shifting and strong access control via EKS Access Entries and RBAC.</p>
+            <a href="https://github.com/TunNyein/eks-blue-green-demo/tree/eks-blue-green-demo-v2" target="_blank" class="project-link">View on Github →</a>
+        </article>
+
+        <article class="project-card">
+            <h4>AWS SSM Session Manager with S3 Logging</h4>
+            <p>Secure EC2 management using AWS Systems Manager (SSM) with automated session logging to S3 for full auditing and accountability.</p>
+            <a href="https://github.com/TunNyein/aws-ssm--s3-logging" target="_blank" class="project-link">View on Github →</a>
+        </article>
+
+        <article class="project-card">
+            <h4>Static Website Hosting: S3, CloudFront CDN, and HTTPS (SSL)</h4>
+            <p>Configured high-performance static website hosting via S3 and CloudFront Global CDN. Secured the content delivery pipeline with AWS Certificate Manager (ACM) SSL/TLS, ensuring low latency and improved global edge caching.</p>
+            <a href="https://github.com/TunNyein/S3-CloudFront-SSL" target="_blank" class="project-link">View on Github →</a>
+        </article>
+
+        <article class="project-card">
+            <h4>Secure EC2 Management without VPC Endpoints via AWS SSM</h4>
+            <p>Implemented SSM automation for EC2 instances residing in private subnets without relying on VPC Endpoints, demonstrating standard SSM workflows using public service endpoints and managed NAT connectivity.</p>
+            <a href="https://gitlab.com/tunnyein/aws-ssm-project-02-without-vpc-endpoints" target="_blank" class="project-link">View on GitLab →</a>
+        </article>
+        
+        <article class="project-card">
+            <h4>AWS Intra-Region and Cross-Account VPC Peering</h4>
+            <p>Established secure network connectivity and routing between VPCs across different regions (Inter-Region) and accounts (Cross-Account). Developed the necessary peering connections, subnets, and route table entries via Terraform.</p>
+            <a href="https://github.com/TunNyein/aws-vpc-peering-crossregion-crossaccount" target="_blank" class="project-link">View on Github →</a>
+        </article>
+    </div>
+  </section>
+
+  <section id="certs" class="section">
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-container">
+      <img src="images/cka_from_cncfsite__281_29.png" alt="CKA" />
+      <img src=images/blob.png alt="Terraform" />
+      <img src="images/MCSE-Cloud-Platform-Infrastructure-2018.png" alt="MCSE" />
+      
+      <img src="images/MCSA-Windows-Server-2012-2018.png" alt="MCSA" />
+      
+    </div>
+  </section>
+
+  <!-- <section id="contact" class="section">
+    <h2 class="section-title"></h2>
+    <p class="contact-text">Email: tunnyein.ict@gmail.com</p>
+    <p class="contact-text">Linkdien : https://www.linkedin.com/in/nyein-tun/</p>
+    <p class="contact-text">Whatapps : https://www.linkedin.com/in/nyein-tun/</p>
+
+  </section> -->
+
+  <section id="contact" class="section">
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="contact-lead">I am available through the following channels:</p>
+    
+    <div class="contact-list">
+        
+        <div class="contact-item">
+            <span class="icon">📧</span>
+            <span class="contact-label">Email:</span>
+            <a href="mailto:tunnyein.ict@gmail.com" class="contact-link">tunnyein.ict@gmail.com</a>
+        </div>
+        
+        <div class="contact-item">
+            <span class="icon">💼</span>
+            <span class="contact-label">LinkedIn:</span>
+            <a href="https://www.linkedin.com/in/nyein-tun/" target="_blank" rel="noopener noreferrer" class="contact-link">Connect on LinkedIn</a>
+        </div>
+        
+        <div class="contact-item">
+    <span class="icon">💬</span>
+    <span class="contact-label">WhatsApp:</span>
+    <a href="https://wa.me/+959443888707" target="_blank" rel="noopener noreferrer" class="contact-link">Message Me</a> 
+</div>
+    </div>
+</section>
+
+  <script src="app.js"></script>
+</body>
+</html>
