@@ -1,3 +1,9 @@
+# Get the current AWS Account ID
+data "aws_caller_identity" "current" {}
+
+# Get the current AWS Region
+data "aws_region" "current" {}
+
 # IAM role Lambda assumes to run
 resource "aws_iam_role" "lambda_exec" {
   name = "${var.prefix}-lambda-exec-${var.environment}"
@@ -12,21 +18,37 @@ resource "aws_iam_role" "lambda_exec" {
   })
 }
 
-# CloudWatch logging permissions
-resource "aws_iam_role_policy_attachment" "aws_lambda_basic_execution" {
-  role       = aws_iam_role.lambda_exec.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+# Inline IAM policy with dynamic account & region
+resource "aws_iam_policy" "lambda_dynamic_policy" {
+  name = "${var.prefix}-lambda-policy-${var.environment}"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "dynamodb:UpdateItem",
+          "dynamodb:GetItem",
+          "dynamodb:PutItem"
+        ]
+        Resource = "arn:aws:dynamodb:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:table/visitor-counter"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "cloudwatch:PutMetricData"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
 }
 
-# Custom DynamoDB read/write permissions
-resource "aws_iam_policy" "lambda_inline_policy" {
-  name   = "${var.prefix}-lambda-policy-${var.environment}"
-  policy = file("${path.module}/lambda-policy.json")
-}
-
-resource "aws_iam_role_policy_attachment" "custom_policy_attach" {
+# Attach the dynamic policy to Lambda role
+resource "aws_iam_role_policy_attachment" "attach_lambda_policy" {
   role       = aws_iam_role.lambda_exec.name
-  policy_arn = aws_iam_policy.lambda_inline_policy.arn
+  policy_arn = aws_iam_policy.lambda_dynamic_policy.arn
 }
 
 # DynamoDB Table
