@@ -32,7 +32,7 @@ resource "aws_iam_policy" "lambda_dynamic_policy" {
           "dynamodb:GetItem",
           "dynamodb:PutItem"
         ]
-        Resource = "arn:aws:dynamodb:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:table/visitor-counter"
+        resources = ["arn:aws:dynamodb:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:table/visitor-counter"]
       },
       {
         Effect = "Allow"
