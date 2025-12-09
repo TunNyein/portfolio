@@ -1,4 +1,4 @@
-# 🌐 Portfolio Serverless Website
+# Portfolio Serverless Website
 
 ## 📌 Overview
 This [My Portfolio](https://www.tunlab.xyz) project demonstrates a fully serverless, scalable, and high-performance portfolio website hosted entirely on AWS.
