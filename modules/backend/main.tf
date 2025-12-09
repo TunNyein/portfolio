@@ -11,34 +11,34 @@ resource "aws_iam_role" "lambda_exec" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [{
-      Effect = "Allow",
+      Effect    = "Allow",
       Principal = { Service = "lambda.amazonaws.com" },
-      Action = "sts:AssumeRole"
+      Action    = "sts:AssumeRole"
     }]
   })
 }
 
-# Inline IAM policy with dynamic account & region
+# IAM policy with dynamic account & region
 resource "aws_iam_policy" "lambda_dynamic_policy" {
   name = "${var.prefix}-lambda-policy-${var.environment}"
 
   policy = jsonencode({
-    Version = "2012-10-17"
+    Version = "2012-10-17",
     Statement = [
       {
-        Effect = "Allow"
-        Action = [
+        Effect   = "Allow",
+        Action   = [
           "dynamodb:UpdateItem",
           "dynamodb:GetItem",
           "dynamodb:PutItem"
-        ]
-        resources = ["arn:aws:dynamodb:${data.aws_region.current.id}:${data.aws_caller_identity.current.account_id}:table/visitor-counter"]
+        ],
+        Resource = "arn:aws:dynamodb:${data.aws_region.current.id}:${data.aws_caller_identity.current.account_id}:table/visitor-counter"
       },
       {
-        Effect = "Allow"
-        Action = [
+        Effect   = "Allow",
+        Action   = [
           "cloudwatch:PutMetricData"
-        ]
+        ],
         Resource = "*"
       }
     ]
