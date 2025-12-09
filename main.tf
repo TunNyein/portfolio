@@ -1,5 +1,5 @@
 module "static_website" {
-  source                     = "./modules/static_website"
+  source                     = "./modules/frontend"
   domain_name                = var.domain_name
   subject_alternative_names  = var.subject_alternative_names
   prefix                     = var.prefix
@@ -8,7 +8,7 @@ module "static_website" {
 }
 
 module "serverless" {
-  source          = "./modules/serverless"
+  source          = "./modules/backend"
   prefix          = var.prefix
   environment     = var.environment
   aws_region      = var.aws_region
