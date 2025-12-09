@@ -3,7 +3,7 @@
 [Visit the live site](https://www.tunlab.xyz)
 
 ## 📌 Overview
-This project[My Portfolio](https://www.tunlab.xyz)  demonstrates a fully serverless, scalable, and high-performance portfolio website hosted entirely on AWS.
+This [My Portfolio](https://www.tunlab.xyz) project demonstrates a fully serverless, scalable, and high-performance portfolio website hosted entirely on AWS.
 
 Infrastructure is deployed using **Terraform Cloud**, and **GitHub Actions** automatically triggers deployment pipelines on every push.
 The backend includes a serverless visitor counter API, and the frontend is globally delivered via CloudFront from an S3 bucket.
